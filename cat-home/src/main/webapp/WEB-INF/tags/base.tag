@@ -53,9 +53,9 @@
 				<div class="navbar-header pull-left">
 					<!-- #section:basics/navbar.layout.brand -->
 					<i class="navbar-brand">
-						<span>CAT</span>
+						<span>歆瑷</span>
 						<small style="font-size:65%">
-							（Central Application Tracking）
+							（服务端状态监控）
 						</small>
 					<button class="btn btn-success btn-sm" id="nav_application" >
 						<i class="ace-icon fa fa-signal"></i>Application
@@ -73,20 +73,11 @@
 					<button class="btn btn-inverse btn-sm" id="nav_config">
 						<i class="ace-icon fa fa-cogs"></i>Configs
 					</button>
-					<button class="btn btn-yellow btn-sm" id="nav_document">
-						<i class="ace-icon fa fa-cogs"></i>Documents
-					</button>
 					</i>
 				</div>
 				<!-- #section:basics/navbar.dropdown -->
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 				<ul class="nav ace-nav" style="height:auto;">
-					<li class="light-blue">
-						<a href="http://github.com/dianping/cat/" target="_blank">
-							<i class="ace-icon glyphicon glyphicon-star"></i>
-							<span>Star</span>
-						</a>
-					</li>
 					<li class="light-blue" >
 						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 							<span class="user-info" style="max-width:200px">
