@@ -46,6 +46,9 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitEventReport(EventReport eventReport) {
+		if (eventReport == null) {
+			return;
+		}
 		m_report = new EventReport(eventReport.getDomain());
 		m_report.setStartTime(eventReport.getStartTime());
 		m_report.setEndTime(eventReport.getEndTime());

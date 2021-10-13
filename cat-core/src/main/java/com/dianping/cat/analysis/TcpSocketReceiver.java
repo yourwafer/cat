@@ -19,6 +19,7 @@
 package com.dianping.cat.analysis;
 
 import com.dianping.cat.CatConstants;
+import com.dianping.cat.CatPropertyProvider;
 import com.dianping.cat.config.server.ServerConfigManager;
 import com.dianping.cat.message.CodecHandler;
 import com.dianping.cat.message.io.BufReleaseHelper;
@@ -92,7 +93,9 @@ public final class TcpSocketReceiver implements LogEnabled {
 
 	public void init() {
 		try {
-			startServer(m_port);
+			String portString = CatPropertyProvider.INST.getProperty("CAT_PORT", String.valueOf(m_port));
+			int port = Integer.parseInt(portString);
+			startServer(port);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 		}

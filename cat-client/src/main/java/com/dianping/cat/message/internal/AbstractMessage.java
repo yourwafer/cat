@@ -19,6 +19,7 @@
 package com.dianping.cat.message.internal;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
@@ -27,140 +28,143 @@ import com.dianping.cat.message.Message;
 import com.dianping.cat.message.spi.codec.PlainTextMessageCodec;
 
 public abstract class AbstractMessage implements Message {
-	protected String m_status = "unset";
+    protected String m_status = "unset";
 
-	private String m_type;
+    private String m_type;
 
-	private String m_name;
+    private String m_name;
 
-	private long m_timestampInMillis;
+    private long m_timestampInMillis;
 
-	private CharSequence m_data;
+    private CharSequence m_data;
 
-	private boolean m_completed;
+    private boolean m_completed;
 
-	public AbstractMessage(String type, String name) {
-		m_type = String.valueOf(type);
-		m_name = String.valueOf(name);
-		m_timestampInMillis = MilliSecondTimer.currentTimeMillis();
-	}
+    public AbstractMessage(String type, String name) {
+        m_type = String.valueOf(type);
+        m_name = String.valueOf(name);
+        m_timestampInMillis = MilliSecondTimer.currentTimeMillis();
+    }
 
-	@Override
-	public void addData(String keyValuePairs) {
-		if (m_data == null) {
-			m_data = keyValuePairs;
-		} else if (m_data instanceof StringBuilder) {
-			((StringBuilder) m_data).append('&').append(keyValuePairs);
-		} else {
-			StringBuilder sb = new StringBuilder(m_data.length() + keyValuePairs.length() + 16);
+    @Override
+    public void addData(String keyValuePairs) {
+        if (m_data == null) {
+            m_data = keyValuePairs;
+        } else if (m_data instanceof StringBuilder) {
+            ((StringBuilder) m_data).append('&').append(keyValuePairs);
+        } else {
+            StringBuilder sb = new StringBuilder(m_data.length() + keyValuePairs.length() + 16);
 
-			sb.append(m_data).append('&');
-			sb.append(keyValuePairs);
-			m_data = sb;
-		}
-	}
+            sb.append(m_data).append('&');
+            sb.append(keyValuePairs);
+            m_data = sb;
+        }
+    }
 
-	@Override
-	public void addData(String key, Object value) {
-		if (m_data instanceof StringBuilder) {
-			((StringBuilder) m_data).append('&').append(key).append('=').append(value);
-		} else {
-			String str = String.valueOf(value);
-			int old = m_data == null ? 0 : m_data.length();
-			StringBuilder sb = new StringBuilder(old + key.length() + str.length() + 16);
+    @Override
+    public void addData(String key, Object value) {
+        if (m_data instanceof StringBuilder) {
+            ((StringBuilder) m_data).append('&').append(key).append('=').append(value);
+        } else {
+            String str = String.valueOf(value);
+            int old = m_data == null ? 0 : m_data.length();
+            StringBuilder sb = new StringBuilder(old + key.length() + str.length() + 16);
 
-			if (m_data != null) {
-				sb.append(m_data).append('&');
-			}
+            if (m_data != null) {
+                sb.append(m_data).append('&');
+            }
 
-			sb.append(key).append('=').append(str);
-			m_data = sb;
-		}
-	}
+            sb.append(key).append('=').append(str);
+            m_data = sb;
+        }
+    }
 
-	@Override
-	public CharSequence getData() {
-		if (m_data == null) {
-			return "";
-		} else {
-			return m_data;
-		}
-	}
+    @Override
+    public CharSequence getData() {
+        if (m_data == null) {
+            return "";
+        } else {
+            return m_data;
+        }
+    }
 
-	public void setData(String str) {
-		m_data = str;
-	}
+    public void setData(String str) {
+        m_data = str;
+    }
 
-	@Override
-	public String getName() {
-		return m_name;
-	}
+    @Override
+    public String getName() {
+        return m_name;
+    }
 
-	public void setName(String name) {
-		m_name = name;
-	}
+    public void setName(String name) {
+        m_name = name;
+    }
 
-	@Override
-	public String getStatus() {
-		return m_status;
-	}
+    @Override
+    public String getStatus() {
+        return m_status;
+    }
 
-	@Override
-	public void setStatus(Throwable e) {
-		m_status = e.getClass().getName();
-	}
+    @Override
+    public void setStatus(Throwable e) {
+        m_status = e.getClass().getName();
+    }
 
-	@Override
-	public long getTimestamp() {
-		return m_timestampInMillis;
-	}
+    @Override
+    public long getTimestamp() {
+        return m_timestampInMillis;
+    }
 
-	@Override
-	public void setTimestamp(long timestamp) {
-		m_timestampInMillis = timestamp;
-	}
+    @Override
+    public void setTimestamp(long timestamp) {
+        m_timestampInMillis = timestamp;
+    }
 
-	@Override
-	public String getType() {
-		return m_type;
-	}
+    @Override
+    public String getType() {
+        return m_type;
+    }
 
-	public void setType(String type) {
-		m_type = type;
-	}
+    public void setType(String type) {
+        m_type = type;
+    }
 
-	@Override
-	public boolean isCompleted() {
-		return m_completed;
-	}
+    @Override
+    public boolean isCompleted() {
+        return m_completed;
+    }
 
-	public void setCompleted(boolean completed) {
-		m_completed = completed;
-	}
+    public void setCompleted(boolean completed) {
+        m_completed = completed;
+    }
 
-	@Override
-	public boolean isSuccess() {
-		return Message.SUCCESS.equals(m_status);
-	}
+    @Override
+    public boolean isSuccess() {
+        return Message.SUCCESS.equals(m_status);
+    }
 
-	@Override
-	public void setStatus(String status) {
-		m_status = status;
-	}
+    @Override
+    public void setStatus(String status) {
+        m_status = status;
+    }
 
-	@Override
-	public String toString() {
-		PlainTextMessageCodec codec = new PlainTextMessageCodec();
-		ByteBuf buf = ByteBufAllocator.DEFAULT.buffer();
+    @Override
+    public String toString() {
+        PlainTextMessageCodec codec = new PlainTextMessageCodec();
+        ByteBuf buf = ByteBufAllocator.DEFAULT.buffer();
+        try {
+            codec.encodeMessage(this, buf);
+            codec.reset();
+            return buf.toString(StandardCharsets.UTF_8);
+        } finally {
+            buf.release();
+        }
+    }
 
-		codec.encodeMessage(this, buf);
-		codec.reset();
-		return buf.toString(Charset.forName("utf-8"));
-	}
-
-	@Override
-	public void setSuccessStatus() {
-		m_status = SUCCESS;
-	}
+    @Override
+    public void setSuccessStatus() {
+        m_status = SUCCESS;
+    }
 
 }

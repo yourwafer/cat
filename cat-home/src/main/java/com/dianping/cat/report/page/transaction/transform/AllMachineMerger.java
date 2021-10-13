@@ -89,6 +89,9 @@ public class AllMachineMerger extends BaseVisitor {
 
 	@Override
 	public void visitTransactionReport(TransactionReport transactionReport) {
+		if (transactionReport == null) {
+			return;
+		}
 		m_report = new TransactionReport(transactionReport.getDomain());
 		m_report.setStartTime(transactionReport.getStartTime());
 		m_report.setEndTime(transactionReport.getEndTime());
