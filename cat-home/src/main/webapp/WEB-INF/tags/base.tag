@@ -8,9 +8,10 @@
 <html lang="en"><head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta charset="utf-8">
-	<title>CAT</title>
+	<title>歆瑷服务状态监控</title>
 	<meta name="description" content="Restyling jQuery UI Widgets and Elements">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="icon" href="${model.webapp}/assets/img/icon.png">
 	<link rel="stylesheet" type="text/css" href="${model.webapp}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="${model.webapp}/assets/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="${model.webapp}/assets/css/font-awesome.min.css">
