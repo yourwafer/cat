@@ -28,7 +28,7 @@ import com.dianping.cat.message.spi.internal.DefaultMessageTree;
 import com.dianping.cat.statistic.ServerStatisticManager;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.buffer.UnpooledByteBufAllocator;
 import io.netty.channel.*;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
@@ -124,7 +124,7 @@ public final class TcpSocketReceiver implements LogEnabled {
 		bootstrap.childOption(ChannelOption.SO_REUSEADDR, true);
 		bootstrap.childOption(ChannelOption.TCP_NODELAY, true);
 		bootstrap.childOption(ChannelOption.SO_KEEPALIVE, true);
-		bootstrap.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
+		bootstrap.childOption(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT);
 
 		try {
 			m_future = bootstrap.bind(port).sync();

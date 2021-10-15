@@ -49,7 +49,9 @@ public class DefaultRemoteServersUpdater implements ServersUpdater {
 	public Map<String, Set<String>> buildServers(Date hour) {
 		StateReport currentReport = queryStateReport(Constants.CAT, hour.getTime());
 		StateReportVisitor visitor = new StateReportVisitor();
-
+		if (currentReport.getMachines() == null) {
+			return visitor.getServers();
+		}
 		visitor.visitStateReport(currentReport);
 		return visitor.getServers();
 	}
