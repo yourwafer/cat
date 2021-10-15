@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Stack;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.PooledByteBufAllocator;
 
 import com.dianping.cat.message.Event;
@@ -107,7 +108,7 @@ public class NativeMessageCodec implements MessageCodec {
 
 	@Override
 	public ByteBuf encode(MessageTree tree) {
-		ByteBuf buf = PooledByteBufAllocator.DEFAULT.buffer(4 * 1024);
+		ByteBuf buf = ByteBufAllocator.DEFAULT.buffer(4 * 1024);
 
 		try {
 			Context ctx = new Context(tree);

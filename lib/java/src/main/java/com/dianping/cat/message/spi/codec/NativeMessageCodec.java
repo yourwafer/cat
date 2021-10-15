@@ -96,7 +96,7 @@ public class NativeMessageCodec implements MessageCodec {
 
     @Override
     public ByteBuf encode(MessageTree tree) {
-        ByteBuf buf = PooledByteBufAllocator.DEFAULT.buffer(4 * 1024);
+        ByteBuf buf = ByteBufAllocator.DEFAULT.buffer(4 * 1024);
 
         try {
             Context ctx = new Context(tree);
