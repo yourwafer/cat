@@ -60,13 +60,13 @@ public class StateBuilder {
 			int excepeted = servers.size();
 			Set<String> errorServers = new HashSet<String>();
 
-			if (realSize != excepeted) {
-				for (String serverIp : servers) {
-					if (report.getMachines().get(serverIp) == null) {
-						errorServers.add(serverIp);
-					}
-				}
-			}
+//			if (realSize != excepeted) {
+//				for (String serverIp : servers) {
+//					if (report.getMachines().get(serverIp) == null) {
+//						errorServers.add(serverIp);
+//					}
+//				}
+//			}
 			for (Machine machine : report.getMachines().values()) {
 				if (checkTooMuchLoss(machine)) {
 					errorServers.add(machine.getIp());
