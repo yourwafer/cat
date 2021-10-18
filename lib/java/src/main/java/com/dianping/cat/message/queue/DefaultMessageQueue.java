@@ -46,7 +46,7 @@ public class DefaultMessageQueue implements MessageQueue {
     @Override
     public MessageTree poll() {
         try {
-            return queue.poll(5, TimeUnit.MILLISECONDS);
+            return queue.poll(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             return null;
         }

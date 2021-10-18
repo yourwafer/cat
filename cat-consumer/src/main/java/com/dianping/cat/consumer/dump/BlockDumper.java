@@ -63,7 +63,7 @@ public class BlockDumper implements Task {
 	public void run() {
 		try {
 			while (true) {
-				MessageBlock block = m_messageBlocks.poll(5, TimeUnit.MILLISECONDS);
+				MessageBlock block = m_messageBlocks.poll(5, TimeUnit.SECONDS);
 
 				if (block != null) {
 					m_executors.submit(new FlushBlockTask(block));

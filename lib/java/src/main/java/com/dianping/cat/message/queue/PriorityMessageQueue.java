@@ -59,7 +59,7 @@ public class PriorityMessageQueue implements MessageQueue {
 
         if (tree == null) {
             try {
-                tree = normalQueue.poll(5, TimeUnit.MILLISECONDS);
+                tree = normalQueue.poll(5, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 return null;
             }

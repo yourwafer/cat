@@ -293,7 +293,7 @@ public class AlertManager implements Initializable {
 		public void run() {
 			while (true) {
 				try {
-					AlertEntity alert = m_alerts.poll(5, TimeUnit.MILLISECONDS);
+					AlertEntity alert = m_alerts.poll(5, TimeUnit.SECONDS);
 
 					if (alert != null) {
 						send(alert);

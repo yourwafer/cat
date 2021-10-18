@@ -428,7 +428,7 @@ public class LocalMessageBucketManager extends ContainerHolder
 		public void run() {
 			try {
 				while (true) {
-					MessageItem item = m_messageQueue.poll(5, TimeUnit.MILLISECONDS);
+					MessageItem item = m_messageQueue.poll(5, TimeUnit.SECONDS);
 
 					if (item != null) {
 						m_count++;
