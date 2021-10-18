@@ -106,7 +106,7 @@ public class DefaultMessageProcessor implements MessageProcessor, MessageFinder 
 	}
 
 	private MessageTree pollMessage() throws InterruptedException {
-		return m_queue.poll(5, TimeUnit.MILLISECONDS);
+		return m_queue.poll(5, TimeUnit.SECONDS);
 	}
 
 	private void processMessage(MessageTree tree) {

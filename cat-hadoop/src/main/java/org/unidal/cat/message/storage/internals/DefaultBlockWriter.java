@@ -113,7 +113,7 @@ public class DefaultBlockWriter implements BlockWriter {
 
 		try {
 			while (m_enabled.get() || !m_queue.isEmpty()) {
-				Block block = m_queue.poll(5, TimeUnit.MILLISECONDS);
+				Block block = m_queue.poll(5, TimeUnit.SECONDS);
 
 				if (block != null) {
 					long time = System.currentTimeMillis();
